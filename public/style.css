@@ -222,3 +222,6 @@
   .newsletter{padding:40px 0}
   .product-grid{row-gap:22px}
 }
+a.kc-quickadd.kc-notify{text-decoration:none;background:var(--paper);color:var(--brown);border-color:var(--brown)}
+a.kc-quickadd.kc-notify:hover{background:var(--brown);color:#fff}
+a.button.kc-notify{text-decoration:none;display:inline-flex;align-items:center;gap:8px}

@@ -120,6 +120,7 @@ export function Confidentialite() {
 
     <h3>Données collectées</h3>
     <p>Lorsque vous passez commande ou nous écrivez : nom, prénom, e-mail, téléphone, adresse de livraison, point relais, contenu de la commande et vos messages. Ces données nous parviennent dans l’e-mail que vous envoyez.</p>
+    <p>Si vous demandez à être prévenu(e) du retour d’un article (« Me prévenir »), nous utilisons uniquement votre adresse e-mail pour vous envoyer cette information, puis nous supprimons la demande.</p>
     <p>Vos données bancaires ne sont jamais collectées par ce site : le paiement se fait sur la page de SumUp ou de PayPal.</p>
 
     <h3>Finalités et bases légales</h3>

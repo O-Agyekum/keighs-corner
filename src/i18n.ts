@@ -250,12 +250,22 @@ const D: Record<string, [string, string, string]> = {
   'pièces disponibles': ['pieces available', 'piezas disponibles', 'Stück verfügbar'],
   'La disponibilité est confirmée avant l’envoi du lien de paiement.': ['Availability is confirmed before the payment link is sent.', 'La disponibilidad se confirma antes de enviar el enlace de pago.', 'Die Verfügbarkeit wird vor dem Versand des Zahlungslinks bestätigt.'],
   'PayPal': ['PayPal', 'PayPal', 'PayPal'],
+  'Me prévenir': ['Notify me', 'Avísame', 'Benachrichtigen'],
+  'Me prévenir quand il revient': ['Notify me when it’s back', 'Avísame cuando vuelva', 'Benachrichtigen, wenn wieder da'],
+  'Recevoir un e-mail quand l’article revient': ['Get an e-mail when it’s back in stock', 'Recibe un correo cuando vuelva a estar disponible', 'E-Mail erhalten, wenn der Artikel wieder da ist'],
 };
 
 const IDX: Record<Lang, number> = { fr: -1, en: 0, es: 1, de: 2 };
 const KEY = 'kc_lang';
 const read = (): Lang => {
+  // 1) langue choisie par le visiteur (mémorisée), 2) sinon langue du navigateur,
+  // 3) sinon anglais pour les autres langues, français par défaut.
   try { const v = localStorage.getItem(KEY) as Lang; if (v && v in IDX) return v; } catch {}
+  try {
+    const prefs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]) || [];
+    for (const p of prefs) { const c = String(p || '').slice(0, 2).toLowerCase(); if (c in IDX) return c as Lang; }
+    if (prefs.length) return 'en';
+  } catch {}
   return 'fr';
 };
 let current: Lang = read();
