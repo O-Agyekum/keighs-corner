@@ -2,6 +2,10 @@
 
 A responsive independent French-language boutique prototype for Keigh’s Corner, with the owner-provided KC monogram and the public Shopify catalogue snapshot captured on 26 November 2026.
 
+## Commandes (SumUp + PayPal)
+
+Le paiement fonctionne par **demande de commande par e-mail**, puis envoi d’un lien de paiement SumUp ou PayPal par le vendeur. Mode d’emploi et ouverture des commandes : `docs/COMMANDES_SUMUP_PAYPAL.md`. Réglages : `src/shopConfig.ts`.
+
 ## Features
 
 - 36 distinct products and 65 original Shopify CDN photograph links.
