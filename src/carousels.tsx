@@ -9,30 +9,14 @@ const reducedMotion = () => { try { return window.matchMedia('(prefers-reduced-m
 
 const Arrow = ({ dir }) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{dir === 'prev' ? <path d="m15 6-6 6 6 6" /> : <path d="m9 6 6 6-6 6" />}</svg>;
 
-// Diaporama de la grande image d’accueil : défilement automatique, flèches, points, glisser au doigt.
-export function HeroSlides({ slides, interval = 5000 }) {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const touch = useRef(null);
-  const n = slides.length;
-  const go = useCallback(k => setI(((k % n) + n) % n), [n]);
-  useEffect(() => {
-    if (paused || n < 2 || reducedMotion()) return;
-    const t = setTimeout(() => go(i + 1), interval);
-    return () => clearTimeout(t);
-  }, [i, paused, n, interval, go]);
-  if (!n) return null;
-  return <div className="hero-image kc-hero-slides" aria-roledescription={tr("carrousel")} aria-label={tr("Pièces à la une")}
-    onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
-    onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}
-    onTouchStart={e => { touch.current = e.touches[0].clientX; setPaused(true); }}
-    onTouchEnd={e => { const d = e.changedTouches[0].clientX - (touch.current ?? 0); if (Math.abs(d) > 40) go(i + (d < 0 ? 1 : -1)); touch.current = null; setPaused(false); }}>
-    {slides.map((s, k) => <a key={s.id} href={'#/product/' + s.id} className={'kc-hero-slide' + (k === i ? ' active' : '')}
-      aria-hidden={k !== i} tabIndex={k === i ? 0 : -1} aria-roledescription={tr("diapositive")} aria-label={`${k + 1} ${tr('sur')} ${n} : ${s.title}`}>
-      <img src={s.image} alt={s.title} loading={k === 0 ? 'eager' : 'lazy'} decoding="async" />
-      <div className="hero-image-caption"><span>{s.eyebrow}</span><strong>{s.title}</strong><small>{fmt(s.price)} · {tr('Découvrir →')}</small></div>
-    </a>)}
-  </div>;
+// Grande image d’accueil : une seule photo fixe (la première de la liste, le Mini Handbag - Chocolate).
+export function HeroSlides({ slides }) {
+  const s = slides[0];
+  if (!s) return null;
+  return <a className="hero-image" href={'#/product/' + s.id}>
+    <img src={s.image} alt={s.title} loading="eager" decoding="async" />
+    <div className="hero-image-caption"><span>{tr('LA TOUCHE FINALE')}</span><strong>{tr('Des accessoires à aimer et à porter.')}</strong></div>
+  </a>;
 }
 
 // Rangée de produits qui défile horizontalement (flèches sur ordinateur, glisser sur téléphone).
