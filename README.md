@@ -2,6 +2,10 @@
 
 A responsive independent French-language boutique prototype for Keigh’s Corner, with the owner-provided KC monogram and the public Shopify catalogue snapshot captured on 26 November 2026.
 
+## Commandes (SumUp + PayPal)
+
+Le paiement fonctionne par **demande de commande par e-mail**, puis envoi d’un lien de paiement SumUp ou PayPal par le vendeur. Mode d’emploi et ouverture des commandes : `docs/COMMANDES_SUMUP_PAYPAL.md`. Réglages : `src/shopConfig.ts`.
+
 ## Features
 
 - 36 distinct products and 65 original Shopify CDN photograph links.
@@ -31,7 +35,7 @@ The Vite build produces the static `dist` directory. The `vite.config.ts` file s
 
 ## Deployment
 
-The repository can use GitHub Pages Actions to publish a **demo only**. The `.github/workflows/pages.yml` workflow supports **manual trigger only**; it will not automatically publish the demo when files are uploaded. Do **not** turn on production checkout simply by enabling Pages; see `docs/END_TO_END_LAUNCH_CHECKLIST.md` for the remaining secure backend, PCI/payment, stock, email, shipping, legal and operational integration tasks.
+The repository can use GitHub Pages Actions to publish a **demo only**. The `.github/workflows/pages.yml` workflow supports **automatic demo publication on pushes to `main`** and manual triggering. Do **not** turn on production checkout simply by enabling Pages; see `docs/END_TO_END_LAUNCH_CHECKLIST.md` for the remaining secure backend, PCI/payment, stock, email, shipping, legal and operational integration tasks.
 
 ## Data provenance
 
