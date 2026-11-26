@@ -22,13 +22,13 @@ export function HeroSlides({ slides, interval = 5000 }) {
     return () => clearTimeout(t);
   }, [i, paused, n, interval, go]);
   if (!n) return null;
-  return <div className="hero-image kc-hero-slides" aria-roledescription="carrousel" aria-label="Pièces à la une"
+  return <div className="hero-image kc-hero-slides" aria-roledescription={tr("carrousel")} aria-label={tr("Pièces à la une")}
     onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
     onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}
     onTouchStart={e => { touch.current = e.touches[0].clientX; setPaused(true); }}
     onTouchEnd={e => { const d = e.changedTouches[0].clientX - (touch.current ?? 0); if (Math.abs(d) > 40) go(i + (d < 0 ? 1 : -1)); touch.current = null; setPaused(false); }}>
     {slides.map((s, k) => <a key={s.id} href={'#/product/' + s.id} className={'kc-hero-slide' + (k === i ? ' active' : '')}
-      aria-hidden={k !== i} tabIndex={k === i ? 0 : -1} aria-roledescription="diapositive" aria-label={`${k + 1} sur ${n} : ${s.title}`}>
+      aria-hidden={k !== i} tabIndex={k === i ? 0 : -1} aria-roledescription={tr("diapositive")} aria-label={`${k + 1} ${tr('sur')} ${n} : ${s.title}`}>
       <img src={s.image} alt={s.title} loading={k === 0 ? 'eager' : 'lazy'} decoding="async" />
       <div className="hero-image-caption"><span>{s.eyebrow}</span><strong>{s.title}</strong><small>{fmt(s.price)} · {tr('Découvrir →')}</small></div>
     </a>)}
@@ -42,7 +42,7 @@ export function ProductCarousel({ items, renderItem, label }) {
   const update = () => { const t = track.current; if (!t) return; setEdge({ start: t.scrollLeft < 8, end: t.scrollLeft + t.clientWidth >= t.scrollWidth - 8 }); };
   useEffect(() => { update(); const t = track.current; if (!t) return; t.addEventListener('scroll', update, { passive: true }); window.addEventListener('resize', update); return () => { t.removeEventListener('scroll', update); window.removeEventListener('resize', update); }; }, [items.length]);
   const scroll = dir => { const t = track.current; if (!t) return; t.scrollBy({ left: dir * t.clientWidth * 0.9, behavior: reducedMotion() ? 'auto' : 'smooth' }); };
-  return <div className="kc-carousel" aria-roledescription="carrousel" aria-label={label}>
+  return <div className="kc-carousel" aria-roledescription={tr("carrousel")} aria-label={label}>
     <button type="button" className="kc-car-arrow prev" onClick={() => scroll(-1)} disabled={edge.start} aria-label="Produits précédents"><Arrow dir="prev" /></button>
     <div className="kc-car-track" ref={track} tabIndex={0}>
       {items.map(p => <div className="kc-car-item" key={p.id}>{renderItem(p)}</div>)}
@@ -104,7 +104,7 @@ export function ProductMarquee({ items, renderItem, label, secondsPerLoop = 45, 
     };
   }, [items.length, still, secondsPerLoop]);
   const list = still ? items : [...items, ...items];
-  return <div className={'kc-marquee' + (variant ? ' ' + variant : '') + (still ? ' still' : '')} ref={zone} aria-roledescription="carrousel" aria-label={label}>
+  return <div className={'kc-marquee' + (variant ? ' ' + variant : '') + (still ? ' still' : '')} ref={zone} aria-roledescription={tr("carrousel")} aria-label={label}>
     <div className="kc-marquee-track" ref={track}>
       {list.map((p, k) => <div className="kc-marquee-item" key={p.id + '-' + k} aria-hidden={k >= items.length ? true : undefined}>{renderItem(p, k >= items.length)}</div>)}
     </div>
