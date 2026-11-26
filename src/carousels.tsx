@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Carrousels de la page d’accueil (création originale Keigh’s Corner).
 import * as React from "react";
+import { tr } from "./i18n";
 
 const { useState, useEffect, useRef, useCallback } = React;
 const fmt = n => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(Number(n) || 0);
@@ -29,13 +30,8 @@ export function HeroSlides({ slides, interval = 5000 }) {
     {slides.map((s, k) => <a key={s.id} href={'#/product/' + s.id} className={'kc-hero-slide' + (k === i ? ' active' : '')}
       aria-hidden={k !== i} tabIndex={k === i ? 0 : -1} aria-roledescription="diapositive" aria-label={`${k + 1} sur ${n} : ${s.title}`}>
       <img src={s.image} alt={s.title} loading={k === 0 ? 'eager' : 'lazy'} decoding="async" />
-      <div className="hero-image-caption"><span>{s.eyebrow}</span><strong>{s.title}</strong><small>{fmt(s.price)} · Découvrir →</small></div>
+      <div className="hero-image-caption"><span>{s.eyebrow}</span><strong>{s.title}</strong><small>{fmt(s.price)} · {tr('Découvrir →')}</small></div>
     </a>)}
-    {n > 1 && <>
-      <button type="button" className="kc-car-arrow prev" onClick={() => go(i - 1)} aria-label="Diapositive précédente"><Arrow dir="prev" /></button>
-      <button type="button" className="kc-car-arrow next" onClick={() => go(i + 1)} aria-label="Diapositive suivante"><Arrow dir="next" /></button>
-      <div className="kc-dots">{slides.map((s, k) => <button type="button" key={s.id} className={k === i ? 'active' : ''} onClick={() => go(k)} aria-label={'Afficher ' + s.title} aria-current={k === i} />)}</div>
-    </>}
   </div>;
 }
 
