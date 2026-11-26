@@ -4,7 +4,9 @@ import * as React from "react";
 import { tr } from "./i18n";
 
 const { useState, useEffect, useRef, useCallback } = React;
-const fmt = n => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(Number(n) || 0);
+import { getLang } from "./i18n";
+const PRICE_LOCALE = { fr: 'fr-FR', en: 'en-IE', es: 'es-ES', de: 'de-DE' };
+const fmt = n => new Intl.NumberFormat(PRICE_LOCALE[getLang()] || 'fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 2 }).format(Number(n) || 0);
 const reducedMotion = () => { try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { return false; } };
 
 const Arrow = ({ dir }) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{dir === 'prev' ? <path d="m15 6-6 6 6 6" /> : <path d="m9 6 6 6-6 6" />}</svg>;

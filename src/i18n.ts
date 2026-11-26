@@ -298,6 +298,13 @@ const D: Record<string, [string, string, string]> = {
   'Plus que des accessoires. Un reflet de vous.': ['More than accessories. A reflection of you.', 'Más que accesorios. Un reflejo de ti.', 'Mehr als Accessoires. Ein Spiegel Ihrer Persönlichkeit.'],
   'Merci de faire partie de notre aventure.': ['Thank you for being part of our journey.', 'Gracias por formar parte de nuestra historia.', 'Danke, dass Sie Teil unserer Geschichte sind.'],
   'Avec amour,': ['With love,', 'Con cariño,', 'Herzlichst,'],
+  // Compteurs, messages, titre
+  '1 article': ['1 item', '1 artículo', '1 Artikel'],
+  '{n} articles': ['{n} items', '{n} artículos', '{n} Artikel'],
+  '1 résultat': ['1 result', '1 resultado', '1 Ergebnis'],
+  '{n} résultats': ['{n} results', '{n} resultados', '{n} Ergebnisse'],
+  'Une boutique indépendante, pensée pour mobile.': ['An independent shop, designed for mobile.', 'Una tienda independiente, pensada para el móvil.', 'Ein unabhängiger Shop, für Mobilgeräte gemacht.'],
+  'Keigh’s Corner — Boutique indépendante': ['Keigh’s Corner — Independent shop', 'Keigh’s Corner — Tienda independiente', 'Keigh’s Corner — Unabhängiger Shop'],
 };
 
 const IDX: Record<Lang, number> = { fr: -1, en: 0, es: 1, de: 2 };
