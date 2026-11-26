@@ -16,10 +16,10 @@ export const ORDER_EMAIL = ''; // À remettre après immatriculation : 'keighsco
 // que vous envoyez après avoir vérifié la commande.
 // ⚠ Remplacez par vos vrais tarifs avant d’ouvrir la boutique.
 export const SHIPPING_OPTIONS = {
-  home: { label: 'À domicile', carrier: 'La Poste', price: 6.9 },
-  pickup: { label: 'Point relais', carrier: 'Mondial Relay', price: 4.9 },
+  home: { label: 'À domicile', carrier: 'La Poste', price: 9.9 },
+  pickup: { label: 'Point relais', carrier: 'Mondial Relay', price: 6.5 },
   // Autres pays de l’Union européenne : tarif unique.
-  eu: { label: 'Livraison Union européenne', carrier: 'La Poste (international)', price: 15 },
+  eu: { label: 'Livraison Union européenne', carrier: 'La Poste (international)', price: 19.9 },
 };
 
 // Pays de livraison : la France + les 26 autres pays de l’Union européenne (codes ISO).
