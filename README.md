@@ -31,7 +31,7 @@ The Vite build produces the static `dist` directory. The `vite.config.ts` file s
 
 ## Deployment
 
-The repository can use GitHub Pages Actions to publish a **demo only**. The `.github/workflows/pages.yml` workflow supports **manual trigger only**; it will not automatically publish the demo when files are uploaded. Do **not** turn on production checkout simply by enabling Pages; see `docs/END_TO_END_LAUNCH_CHECKLIST.md` for the remaining secure backend, PCI/payment, stock, email, shipping, legal and operational integration tasks.
+The repository can use GitHub Pages Actions to publish a **demo only**. The `.github/workflows/pages.yml` workflow supports **automatic demo publication on pushes to `main`** and manual triggering. Do **not** turn on production checkout simply by enabling Pages; see `docs/END_TO_END_LAUNCH_CHECKLIST.md` for the remaining secure backend, PCI/payment, stock, email, shipping, legal and operational integration tasks.
 
 ## Data provenance
 
