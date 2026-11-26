@@ -49,3 +49,9 @@ export const LEGAL = {
   },
   lastUpdate: '26 novembre 2026',
 };
+
+// Vidéos courtes pour la bande « L’univers Keigh’s Corner » (facultatif).
+// Associez l’identifiant d’un produit à l’adresse d’une vidéo .mp4 VERTICALE dont vous
+// avez les droits (vos propres vidéos). Sans vidéo, la photo du produit est affichée.
+// Exemple : 'leather-handbag-4': 'https://…/ma-video.mp4',
+export const GALLERY_VIDEOS: Record<string, string> = {};

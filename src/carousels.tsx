@@ -58,7 +58,7 @@ export function ProductCarousel({ items, renderItem, label }) {
 // Bandeau de produits qui défile en continu. On peut l’attraper et le faire glisser
 // (avec un léger élan au relâchement) ; il s’arrête au survol de la souris.
 // Avec « réduire les animations » activé, il reste immobile et se fait défiler à la main.
-export function ProductMarquee({ items, renderItem, label, secondsPerLoop = 45 }) {
+export function ProductMarquee({ items, renderItem, label, secondsPerLoop = 45, variant = '' }) {
   const zone = useRef(null), track = useRef(null);
   const still = reducedMotion();
   useEffect(() => {
@@ -108,9 +108,30 @@ export function ProductMarquee({ items, renderItem, label, secondsPerLoop = 45 }
     };
   }, [items.length, still, secondsPerLoop]);
   const list = still ? items : [...items, ...items];
-  return <div className={'kc-marquee' + (still ? ' still' : '')} ref={zone} aria-roledescription="carrousel" aria-label={label}>
+  return <div className={'kc-marquee' + (variant ? ' ' + variant : '') + (still ? ' still' : '')} ref={zone} aria-roledescription="carrousel" aria-label={label}>
     <div className="kc-marquee-track" ref={track}>
       {list.map((p, k) => <div className="kc-marquee-item" key={p.id + '-' + k} aria-hidden={k >= items.length ? true : undefined}>{renderItem(p, k >= items.length)}</div>)}
     </div>
   </div>;
+}
+
+// Bande « galerie » : tuiles portrait arrondies (photos ou vidéos courtes) qui défilent en continu.
+// Chaque tuile mène à la fiche produit. Les vidéos ne se chargent qu’à l’écran et restent muettes.
+export function GalleryStrip({ tiles, title, subtitle }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const root = ref.current; if (!root || reducedMotion()) return;
+    const vids = [...root.querySelectorAll('video[data-src]')]; if (!vids.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play?.().catch(() => {}); } else v.pause?.(); }), { rootMargin: '150px 200px' });
+    vids.forEach(v => io.observe(v)); return () => io.disconnect();
+  }, [tiles.length]);
+  if (!tiles.length) return null;
+  return <section className="kc-gallery" ref={ref}>
+    {(title || subtitle) && <div className="kc-gallery-head">{title && <h2>{title}</h2>}{subtitle && <p>{subtitle}</p>}</div>}
+    <ProductMarquee variant="kc-gallery-row" label={title || 'Galerie'} items={tiles} secondsPerLoop={Math.max(30, tiles.length * 4)}
+      renderItem={(t, copy) => <a className="kc-tile" href={'#/product/' + t.id} tabIndex={copy ? -1 : undefined} draggable={false} aria-label={t.caption}>
+        {t.video ? <video muted loop playsInline preload="none" poster={t.image} data-src={t.video} aria-hidden="true" /> : <img src={t.image} alt="" loading="lazy" decoding="async" draggable={false} />}
+        {t.caption && <span className="kc-tile-caption">{t.caption}</span>}
+      </a>} />
+  </section>;
 }
