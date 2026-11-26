@@ -179,3 +179,12 @@
 @media (max-width:1100px){.kc-car-item{flex-basis:calc((100% - 2*20px)/3)}.kc-car-track{gap:20px}}
 @media (max-width:700px){.kc-car-item{flex-basis:72%}.kc-car-track{gap:12px}.kc-carousel .kc-car-arrow{display:none}.kc-hero-slides .kc-car-arrow{width:36px;height:36px}}
 @media (prefers-reduced-motion:reduce){.kc-hero-slide,.kc-hero-slide img{transition:none}}
+.kc-marquee{overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;margin:0 calc(-1 * max(0px,(100vw - 100%)/2));padding:2px 0 8px}
+.kc-marquee.dragging{cursor:grabbing}
+.kc-marquee.dragging a,.kc-marquee.dragging button{pointer-events:none}
+.kc-marquee img{-webkit-user-drag:none;user-select:none}
+.kc-marquee-track{display:flex;gap:23px;width:max-content;will-change:transform}
+.kc-marquee-item{flex:0 0 270px}
+.kc-marquee.still{overflow-x:auto;cursor:auto;scroll-snap-type:x mandatory}
+.kc-marquee.still .kc-marquee-item{scroll-snap-align:start}
+@media (max-width:700px){.kc-marquee-item{flex-basis:205px}.kc-marquee-track{gap:12px}}
