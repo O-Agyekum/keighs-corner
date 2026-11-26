@@ -54,3 +54,63 @@ export function ProductCarousel({ items, renderItem, label }) {
     <button type="button" className="kc-car-arrow next" onClick={() => scroll(1)} disabled={edge.end} aria-label="Produits suivants"><Arrow dir="next" /></button>
   </div>;
 }
+
+// Bandeau de produits qui défile en continu. On peut l’attraper et le faire glisser
+// (avec un léger élan au relâchement) ; il s’arrête au survol de la souris.
+// Avec « réduire les animations » activé, il reste immobile et se fait défiler à la main.
+export function ProductMarquee({ items, renderItem, label, secondsPerLoop = 45 }) {
+  const zone = useRef(null), track = useRef(null);
+  const still = reducedMotion();
+  useEffect(() => {
+    const z = zone.current, t = track.current;
+    if (!z || !t || still || items.length < 2) return;
+    let x = 0, loop = 0, speed = 0, raf = 0, last = performance.now();
+    let hover = false, down = false, moved = false, startX = 0, lastX = 0, lastT = 0, fling = 0, visible = true;
+    const measure = () => { loop = t.scrollWidth / 2; speed = loop / secondsPerLoop; };
+    const wrap = v => { if (!loop) return v; v %= loop; return v > 0 ? v - loop : v; };
+    const frame = now => {
+      const dt = Math.min((now - last) / 1000, 0.1); last = now;
+      if (!down) {
+        if (Math.abs(fling) > 5) { x += fling * dt; fling *= Math.pow(0.05, dt); }
+        else { fling = 0; if (!hover) x -= speed * dt; }
+      }
+      x = wrap(x);
+      t.style.transform = `translate3d(${x}px,0,0)`;
+      raf = visible || down ? requestAnimationFrame(frame) : 0;
+    };
+    const start = () => { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } };
+    measure(); start();
+    const ro = 'ResizeObserver' in window ? new ResizeObserver(measure) : null; ro?.observe(t);
+    const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => { visible = es[es.length - 1].isIntersecting; if (visible) start(); }, { rootMargin: '100px 0px' }) : null; io?.observe(z);
+    const enter = e => { if (e.pointerType === 'mouse') hover = true; };
+    const leave = e => { if (e.pointerType === 'mouse') hover = false; };
+    const pdown = e => { if (e.button !== 0) return; down = true; moved = false; startX = lastX = e.clientX; lastT = performance.now(); fling = 0; start(); };
+    const pmove = e => {
+      if (!down) return;
+      const dx = e.clientX - lastX, now = performance.now();
+      if (!moved && Math.abs(e.clientX - startX) > 6) { moved = true; z.setPointerCapture?.(e.pointerId); z.classList.add('dragging'); }
+      if (moved) { x = wrap(x + dx); fling = dx / Math.max((now - lastT) / 1000, 0.008); }
+      lastX = e.clientX; lastT = now;
+    };
+    const pup = () => { if (!down) return; down = false; z.classList.remove('dragging'); if (performance.now() - lastT > 80) fling = 0; fling = Math.max(-3000, Math.min(3000, fling)); };
+    // Empêche d’ouvrir un produit quand on vient de faire glisser le bandeau.
+    const click = e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } };
+    z.addEventListener('pointerenter', enter); z.addEventListener('pointerleave', leave);
+    z.addEventListener('pointerdown', pdown); z.addEventListener('pointermove', pmove);
+    z.addEventListener('pointerup', pup); z.addEventListener('pointercancel', pup);
+    z.addEventListener('click', click, true);
+    return () => {
+      cancelAnimationFrame(raf); ro?.disconnect(); io?.disconnect();
+      z.removeEventListener('pointerenter', enter); z.removeEventListener('pointerleave', leave);
+      z.removeEventListener('pointerdown', pdown); z.removeEventListener('pointermove', pmove);
+      z.removeEventListener('pointerup', pup); z.removeEventListener('pointercancel', pup);
+      z.removeEventListener('click', click, true);
+    };
+  }, [items.length, still, secondsPerLoop]);
+  const list = still ? items : [...items, ...items];
+  return <div className={'kc-marquee' + (still ? ' still' : '')} ref={zone} aria-roledescription="carrousel" aria-label={label}>
+    <div className="kc-marquee-track" ref={track}>
+      {list.map((p, k) => <div className="kc-marquee-item" key={p.id + '-' + k} aria-hidden={k >= items.length ? true : undefined}>{renderItem(p, k >= items.length)}</div>)}
+    </div>
+  </div>;
+}
