@@ -153,3 +153,6 @@
 .logo-monogram{display:block;width:48px;height:48px;object-fit:contain;flex-shrink:0}
 @media(max-width:860px){.logo-monogram{width:40px;height:40px}}
 @media(max-width:600px){.logo-monogram{width:35px;height:35px}}
+.kc-todo{background:#fde2e1;color:#8a1f1a;padding:1px 6px;border-radius:4px;font-weight:600}
+.kc-legal-form{border:1px solid var(--line);border-radius:9px;padding:6px 20px;margin:14px 0;background:#fffdf9}
+.kc-pre{white-space:pre-wrap;font:12px/1.6 ui-monospace,monospace;background:#f6f3ee;padding:12px;border-radius:8px}
