@@ -31,3 +31,21 @@ N’écrivez jamais de mot de passe ni de clé secrète dans ce fichier : il est
 - Pages **Mentions légales**, **CGV** (dont droit de rétractation de 14 jours) et **Confidentialité** complétées et validées par un professionnel. Elles sont encore marquées « à compléter » dans le site.
 - Vérifier les prix et la disponibilité réelle des 36 produits.
 - L’« espace vendeur » (`#/admin`) reste une démonstration : ses données ne sont enregistrées que dans votre propre navigateur. Il n’est plus affiché aux clients.
+
+## Pages légales (mentions légales, CGV, confidentialité, rétractation)
+
+Les pages sont générées à partir de `LEGAL` dans `src/shopConfig.ts`. Tout champ vide
+s’affiche en rouge « [à compléter] » sur le site. Avant de rouvrir les commandes :
+
+1. Remplir `fullName`, `phone`, `siren`, `mediator` (nom, adresse, site) et `host.phone`
+   (téléphone de GitHub, à vérifier sur le site officiel de GitHub).
+2. Vérifier la mention TVA (`vat`) avec votre statut réel.
+3. Dans `src/legal.tsx`, remplacer le bloc « Encadré obligatoire » par le texte EXACT du modèle
+   pour les ventes de biens : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045981314
+4. Comparer mot pour mot le formulaire de rétractation avec le modèle officiel :
+   https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032887061
+5. Faire relire l’ensemble par un professionnel (expert-comptable, avocat ou CCI).
+
+Fonction « Se rétracter du contrat ici » (`#/retractation`, lien en pied de page) : le client
+remplit un formulaire, confirme, et son e-mail de rétractation s’ouvre. **Vous devez lui
+répondre sans délai par e-mail pour accuser réception.**
