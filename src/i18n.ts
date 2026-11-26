@@ -65,7 +65,8 @@ const D: Record<string, [string, string, string]> = {
   'L’UNIVERS KEIGH’S CORNER': ['THE WORLD OF KEIGH’S CORNER', 'EL UNIVERSO KEIGH’S CORNER', 'DIE WELT VON KEIGH’S CORNER'],
   'Le détail qui': ['The detail that', 'El detalle que', 'Das Detail, das'],
   'change tout.': ['changes everything.', 'lo cambia todo.', 'alles verändert.'],
-  'Mini-sacs, foulards, écharpes et accessoires choisis pour illuminer chaque tenue. Découvrez vos nouvelles pièces préférées, simplement.': ['Mini bags, scarves, wraps and accessories chosen to brighten every outfit. Find your new favourite pieces, simply.', 'Minibolsos, pañuelos, bufandas y accesorios elegidos para iluminar cada look. Descubre tus nuevas piezas favoritas, sin complicaciones.', 'Minitaschen, Tücher, Schals und Accessoires, die jedes Outfit aufwerten. Entdecken Sie ganz einfach Ihre neuen Lieblingsstücke.'],
+  'Mini-sacs, foulards, écharpes et accessoires choisis pour illuminer chaque tenue. Découvrez vos nouvelles pièces préférées, simplement.': ['Bags, scarves, wraps and accessories chosen to brighten every outfit. Find your new favourite pieces.', 'Bolsos, pañuelos, bufandas y accesorios elegidos para iluminar cada look. Descubre tus nuevas piezas favoritas.', 'Taschen, Tücher, Schals und Accessoires, die jedes Outfit aufwerten. Entdecken Sie Ihre neuen Lieblingsstücke.'],
+  'Des accessoires à aimer et à porter.': ['Accessories to love and to wear.', 'Accesorios para amar y llevar.', 'Accessoires zum Verlieben und Tragen.'],
   'Découvrir la collection': ['Discover the collection', 'Descubrir la colección', 'Kollektion entdecken'],
   'Voir les sacs': ['See the bags', 'Ver los bolsos', 'Taschen ansehen'],
   'Des pièces qui ont du style': ['Pieces with style', 'Piezas con estilo', 'Stücke mit Stil'],
@@ -311,9 +312,15 @@ export function setLang(l: Lang) {
 try { document.documentElement.lang = current; } catch {}
 
 // tr('Texte français', { var: 'valeur' }) → texte traduit dans la langue choisie.
+// Textes français reformulés après coup (la clé d’origine reste la même dans le code).
+const FR: Record<string, string> = {
+  'Mini-sacs, foulards, écharpes et accessoires choisis pour illuminer chaque tenue. Découvrez vos nouvelles pièces préférées, simplement.':
+    'Sacs, foulards, écharpes et accessoires choisis pour illuminer chaque tenue. Découvrez vos nouvelles pièces préférées.',
+};
+
 export function tr(fr: string, vars?: Record<string, string>): string {
   const i = IDX[current];
-  let out = i < 0 ? fr : (D[fr]?.[i] ?? fr);
+  let out = i < 0 ? (FR[fr] ?? fr) : (D[fr]?.[i] ?? fr);
   if (vars) for (const k in vars) out = out.split('{' + k + '}').join(vars[k]);
   return out;
 }
