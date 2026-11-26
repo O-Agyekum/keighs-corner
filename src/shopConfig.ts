@@ -18,7 +18,13 @@ export const ORDER_EMAIL = ''; // À remettre après immatriculation : 'keighsco
 export const SHIPPING_OPTIONS = {
   home: { label: 'À domicile', carrier: 'La Poste', price: 6.9 },
   pickup: { label: 'Point relais', carrier: 'Mondial Relay', price: 4.9 },
+  // Autres pays de l’Union européenne : tarif unique.
+  eu: { label: 'Livraison Union européenne', carrier: 'La Poste (international)', price: 15 },
 };
+
+// Pays de livraison : la France + les 26 autres pays de l’Union européenne (codes ISO).
+// Les noms s’affichent automatiquement dans la langue du visiteur.
+export const EU_COUNTRIES = ['FR','AT','BE','BG','HR','CY','CZ','DK','EE','FI','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE'];
 
 // Délai indicatif pour envoyer le lien de paiement (texte affiché au client).
 export const PAYMENT_LINK_DELAY = 'sous 24 à 48 h (jours ouvrés)';
@@ -41,7 +47,7 @@ export const LEGAL = {
   vat: 'TVA non applicable, article 293 B du Code général des impôts',
   mediator: { name: '', address: '', website: '' }, // Médiateur de la consommation (obligatoire)
   returnShippingPaidBy: 'client',     // 'client' ou 'vendeur' : qui paie les frais de retour
-  deliveryArea: 'France métropolitaine',
+  deliveryArea: 'France métropolitaine et dans les autres pays de l’Union européenne',
   host: {
     name: 'GitHub, Inc.',
     address: '88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis',
