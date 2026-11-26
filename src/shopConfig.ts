@@ -9,7 +9,7 @@
 // Tant qu’elle est vide, le bouton « Envoyer ma demande » est désactivé
 // et aucune commande ne peut être passée.
 // Exemple : export const ORDER_EMAIL = 'commandes@exemple.fr';
-export const ORDER_EMAIL = 'kofei-agyekum@outlook.fr';
+export const ORDER_EMAIL = ''; // À remettre après immatriculation : 'kofei-agyekum@outlook.fr'
 
 // Frais de livraison ESTIMÉS affichés au client (en euros).
 // Le montant exact est celui du lien de paiement SumUp ou PayPal
