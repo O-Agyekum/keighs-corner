@@ -9,7 +9,7 @@
 // Tant qu’elle est vide, le bouton « Envoyer ma demande » est désactivé
 // et aucune commande ne peut être passée.
 // Exemple : export const ORDER_EMAIL = 'commandes@exemple.fr';
-export const ORDER_EMAIL = ''; // À remettre après immatriculation : 'kofei-agyekum@outlook.fr'
+export const ORDER_EMAIL = ''; // À remettre après immatriculation : 'keighscorner@gmail.com'
 
 // Frais de livraison ESTIMÉS affichés au client (en euros).
 // Le montant exact est celui du lien de paiement SumUp ou PayPal
@@ -34,7 +34,7 @@ export const LEGAL = {
   tradeName: 'Keigh’s Corner',        // Nom commercial
   address: '89 avenue Carnot, 93140 Bondy, France',
   phone: '',                          // Obligatoire
-  email: 'kofei-agyekum@outlook.fr',  // E-mail de contact (affiché publiquement)
+  email: 'keighscorner@gmail.com',  // E-mail de contact (affiché publiquement) — à remplacer par l’adresse du domaine
   siren: '',                          // Numéro SIREN reçu après immatriculation
   // Franchise en base de TVA (cas habituel en micro-entreprise) : laissez ce texte.
   // Si vous facturez la TVA, remplacez-le par : 'N° de TVA intracommunautaire : FR…'
