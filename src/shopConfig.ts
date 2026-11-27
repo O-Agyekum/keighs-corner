@@ -61,3 +61,11 @@ export const LEGAL = {
 // avez les droits (vos propres vidéos). Sans vidéo, la photo du produit est affichée.
 // Exemple : 'leather-handbag-4': 'https://…/ma-video.mp4',
 export const GALLERY_VIDEOS: Record<string, string> = {};
+
+// Adresse publique du site (sert aux liens de partage). À mettre à jour quand vous aurez votre domaine.
+export const SITE_URL = 'https://o-agyekum.github.io/keighs-corner/';
+
+// Compteur de visites : Cloudflare Web Analytics (gratuit, sans cookie, sans donnée personnelle).
+// Collez ici le « token » donné par Cloudflare (dash.cloudflare.com → Analytics & Logs → Web Analytics).
+// Tant qu’il est vide, aucun compteur n’est chargé.
+export const ANALYTICS_TOKEN = '';
