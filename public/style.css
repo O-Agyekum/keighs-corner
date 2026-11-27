@@ -209,7 +209,7 @@
 .kc-lang-row button.on{background:var(--brown);color:#fff;border-color:var(--brown)}
 /* ── Téléphone : espacements resserrés ───────── */
 @media (max-width:600px){
-  .kc-lang{display:none}
+  .kc-lang select{padding:6px 20px 6px 8px;font-size:11px;background-position:right 6px center;border-radius:16px}
   .hero-copy{padding:30px 20px 22px}
   .hero-under{padding-top:16px}
   .hero-image{height:340px;min-height:340px}
