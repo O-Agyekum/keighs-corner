@@ -5,7 +5,7 @@
 // ⚠ Projet rédigé avec l’aide d’un assistant : à faire valider par un professionnel
 // (expert-comptable, avocat ou CCI) avant d’accepter des commandes.
 import * as React from "react";
-import { LEGAL, SHIPPING_OPTIONS } from "./shopConfig";
+import { LEGAL, SHIPPING_OPTIONS, ANALYTICS_TOKEN } from "./shopConfig";
 import { tr } from "./i18n";
 
 const { useState } = React;
@@ -153,7 +153,7 @@ export function Confidentialite() {
     <p>{tr('Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, d’opposition et de portabilité de vos données. Pour les exercer :')} <Mail /> {tr('ou par courrier à l’adresse ci-dessus. Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (')}<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>).</p>
 
     <h3>{tr('Stockage dans votre navigateur')}</h3>
-    <p>{tr('Votre panier et vos favoris sont enregistrés uniquement dans votre navigateur (stockage local), pour faire fonctionner le panier. Ils ne nous sont pas transmis. Ce site n’utilise ni cookie publicitaire ni outil de mesure d’audience.')}</p>
+    <p>{tr('Votre panier et vos favoris sont enregistrés uniquement dans votre navigateur (stockage local), pour faire fonctionner le panier. Ils ne nous sont pas transmis.')} {ANALYTICS_TOKEN?tr('Ce site n’utilise aucun cookie publicitaire. Pour connaître le nombre de visites, nous utilisons Cloudflare Web Analytics, un outil de mesure d’audience conçu sans cookie ni identifiant personnel : les données sont agrégées et ne nous permettent pas de vous identifier.'):tr('Ce site n’utilise ni cookie publicitaire ni outil de mesure d’audience.')}</p>
 
     <h3>{tr('Hébergement et images')}</h3>
     <p>{tr('Le site est hébergé par {host} ({hostaddr}). Les photos des produits sont chargées depuis le serveur d’images de Shopify. Comme pour toute page web, ces prestataires reçoivent techniquement votre adresse IP lorsque vous consultez le site.', { host: L.host.name, hostaddr: tr(L.host.address) })}</p>

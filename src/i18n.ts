@@ -307,6 +307,9 @@ const D: Record<string, [string, string, string]> = {
   '{n} résultats': ['{n} results', '{n} resultados', '{n} Ergebnisse'],
   'Une boutique indépendante, pensée pour mobile.': ['An independent shop, designed for mobile.', 'Una tienda independiente, pensada para el móvil.', 'Ein unabhängiger Shop, für Mobilgeräte gemacht.'],
   'Keigh’s Corner — Boutique indépendante': ['Keigh’s Corner — Independent shop', 'Keigh’s Corner — Tienda independiente', 'Keigh’s Corner — Unabhängiger Shop'],
+  'Partager': ['Share', 'Compartir', 'Teilen'],
+  'Lien copié ✓': ['Link copied ✓', 'Enlace copiado ✓', 'Link kopiert ✓'],
+  'Copiez ce lien :': ['Copy this link:', 'Copia este enlace:', 'Diesen Link kopieren:'],
 };
 
 Object.assign(D, LEGAL_D);
