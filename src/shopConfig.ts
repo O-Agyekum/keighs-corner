@@ -68,4 +68,4 @@ export const SITE_URL = 'https://o-agyekum.github.io/keighs-corner/';
 // Compteur de visites : Cloudflare Web Analytics (gratuit, sans cookie, sans donnée personnelle).
 // Collez ici le « token » donné par Cloudflare (dash.cloudflare.com → Analytics & Logs → Web Analytics).
 // Tant qu’il est vide, aucun compteur n’est chargé.
-export const ANALYTICS_TOKEN = '';
+export const ANALYTICS_TOKEN = 'ba82e87ec66b464a9e2dc1d1fc1f49cf';
