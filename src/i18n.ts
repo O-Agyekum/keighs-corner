@@ -11,6 +11,8 @@ export const LANGS = [
 ] as const;
 export type Lang = typeof LANGS[number]['code'];
 
+import { LEGAL_D } from './legalTexts';
+
 const D: Record<string, [string, string, string]> = {
   // En-tête, navigation, pied de page
   'Les détails font toute la différence —': ['Details make all the difference —', 'Los detalles marcan la diferencia —', 'Details machen den Unterschied —'],
@@ -306,6 +308,8 @@ const D: Record<string, [string, string, string]> = {
   'Une boutique indépendante, pensée pour mobile.': ['An independent shop, designed for mobile.', 'Una tienda independiente, pensada para el móvil.', 'Ein unabhängiger Shop, für Mobilgeräte gemacht.'],
   'Keigh’s Corner — Boutique indépendante': ['Keigh’s Corner — Independent shop', 'Keigh’s Corner — Tienda independiente', 'Keigh’s Corner — Unabhängiger Shop'],
 };
+
+Object.assign(D, LEGAL_D);
 
 const IDX: Record<Lang, number> = { fr: -1, en: 0, es: 1, de: 2 };
 const KEY = 'kc_lang';
